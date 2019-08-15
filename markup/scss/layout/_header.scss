@@ -1,0 +1,115 @@
+.header {
+    padding: 45px 0;
+    width: 100%;
+    position: absolute;
+    background-color: #fff;
+}
+
+.nav-list {
+    @include media ('>=desktop') {
+        display: flex;
+    }
+    .nav-item {
+        margin: 30px 0;
+        font-weight: 600;
+        font-size: 20px;
+        @include media ('>=desktop') {
+            margin: 0 20px;
+            &:first-child {
+                margin: 0 20px 0 0;
+            }
+            &:last-child {
+                margin: 0 25px 0 20px;
+            }
+        }
+        
+    }
+    .nav-link {
+        @extend %transition;
+        &:hover {
+            opacity: 0.6;
+        }
+    }
+}
+
+.search-field {
+    display: none;
+}
+
+
+.menu-wrap {
+    overflow-x: auto;
+    overflow-y: hidden;
+    background-color: #fff;
+    padding: 20px 0;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    height: calc(100vh - 54px);
+    left: 100%;
+    text-align: center;
+    transition: all 0.25s linear;
+    @include media ('>=desktop') {
+        position: static;
+        display: flex;
+        justify-content: flex-end;
+        width: 70%;
+        height: auto;
+        background: transparent;
+        padding: 0;
+    }
+    .nav-active & {
+        left: 0;
+    }
+}
+
+.mobile-menu {
+    @include media ('>=tablet') {
+        margin: 0 25px 0 0;
+    }
+    @include media ('>=desktop') {
+        display: none;
+    }
+}
+
+.nav-opener {
+    width: 40px;
+    height: 25px;
+    position: relative;
+    display: block;
+    span,
+    span:before,
+    span:after {
+        position: absolute;
+        display: inline-block;
+        content: '';
+        width: 100%;
+        height: 4px;
+        background-color: #4d4d4d;
+        border-radius: 5px;
+        left: 0;
+        transition: all .3s;
+    }
+    span {
+        top: 0;
+        .nav-active & {
+            top: 10px;
+            transform: rotate(45deg);
+        }
+        &:after {
+            top: 20px;
+            .nav-active & {
+                top: 0;
+                transform: rotate(-90deg);
+            }
+        }
+        &:before {
+            top: 10px;
+            .nav-active & {
+                opacity: 0;
+                transform: rotate(-45deg);
+                top: 0;
+            }
+        }
+    }
+}
